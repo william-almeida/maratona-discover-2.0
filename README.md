@@ -24,14 +24,14 @@
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
-
-- HTML
-- CSS
-- JavaScript
-- NodeJS
-- EJS
-- Express
-- SQLite
+###### vou preencher ao decorrer da maratona e aprendizado
+- [x] HTML
+- [x] CSS
+- [x] JavaScript
+- [ ] NodeJS
+- [ ] EJS
+- [ ] Express
+- [ ] SQLite
 
 ## 💻 Projeto
 

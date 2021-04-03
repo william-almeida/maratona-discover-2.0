@@ -74,7 +74,7 @@ const Job = {
       return res.render(views + 'job')
     },
     post(req, res){
-      const lastId = Job.data[Job.data.length -1]?.id  || 1
+      const lastId = Job.data[Job.data.length -1]?.id  || 0
       Job.data.push({
         id: lastId + 1,
         name: req.body.name,

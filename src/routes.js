@@ -14,6 +14,11 @@ const Profile = {
     "vocation-per-year": 2,
     "hour-value": 50
   },
+  controllers = {
+    index(req, res) {
+      return res.render(views + 'profile', { profile: Profile.data})
+    }
+  }
 }
 
 const Job = {
@@ -92,7 +97,7 @@ routes.post('/job', Job.controllers.post)
 routes.get('/job/edit', (req,res) => res.render(views + 'job-edit'))
 
 // page profile
-routes.get('/profile', (req, res) => res.render(views + 'profile', { profile }))
+routes.get('/profile', Profile.controllers.index)
 
 
 module.exports = routes

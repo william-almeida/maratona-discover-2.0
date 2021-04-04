@@ -78,14 +78,15 @@ module.exports = {
       }
       return job
     })
+
     Job.update(newJobs)
+
     return res.redirect('/job/' + jobId)
   },
 
   delete(req, res) {
     const jobId = req.params.id
-    const jobs = Job.get()
-    jobs = jobs.filter(job => Number(job.id) !== Number(jobId))
+    Job.get(JobId)
     return res.redirect('/')
   }
 }

@@ -1,5 +1,5 @@
 const Job = require('../model/Job')
-const JobUtils = require('../utils/jobUtils')
+const JobUtils = require('../utils/JobUtils')
 const Profile = require('../model/Profile')
 
 
@@ -86,7 +86,7 @@ module.exports = {
 
   delete(req, res) {
     const jobId = req.params.id
-    Job.get(JobId)
+    Job.delete(jobId)
     return res.redirect('/')
   }
 }

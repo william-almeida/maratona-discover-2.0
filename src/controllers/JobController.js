@@ -72,12 +72,13 @@ module.exports = {
       'total-hours': newData['total-hours'],
       'daily-hours': newData['daily-hours']
     }
-    jobs = jobs.map( job => {
+    const newJobs = jobs.map( job => {
       if (Number(job.id) === Number(jobId)) {
         job = updatedJob
       }
       return job
     })
+    Job.update(newJobs)
     return res.redirect('/job/' + jobId)
   },
 

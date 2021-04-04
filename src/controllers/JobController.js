@@ -1,5 +1,4 @@
 const Job = require('../model/Job')
-const Profile = require('./model/Profile')
 const JobUtils = require('../utils/jobUtils')
 const Profile = require('../model/Profile')
 
@@ -24,12 +23,16 @@ module.exports = {
     return res.render('index', { jobs: updatedJobs })
 
   },
+
   create(req, res) {
     return res.render('job')
   },
-  post(req, res) {
-    const lastId = Job.data[Job.data.length - 1]?.id || 0
-    Job.data.push({
+
+  save(req, res) {
+    const jobs = Job.get()
+
+    const lastId = jobs[jobs.length - 1]?.id || 0
+    jobs.push({
       id: lastId + 1,
       name: req.body.name,
       "daily-hours": req.body["daily-hours"],
@@ -38,19 +41,27 @@ module.exports = {
     })
     return res.redirect('/')
   },
+
   show(req, res) {
     const jobId = req.params.id
-    const job = Job.data.find(job => Number(job.id) === Number(jobId))
+    const jobs = Job.get()
+    const profile = Profile.get()
+
+    // search job by JobID (url params)
+    const job = jobs.find(job => Number(job.id) === Number(jobId))
     if (!job) {
       return res.send('Job not found!')
     }
-    job.budget = Job.services.calculateBudget(job, Profile.data['hour-value'])
+    job.budget = JobUtils.calculateBudget(job, profile['hour-value'])
     return res.render('job-edit', { job })
   },
+
   update(req, res) {
+    // data send by form 
     const newData = req.body
     const jobId = req.params.id
-    const job = Job.data.find(job => Number(job.id) === Number(jobId))
+    const jobs = Job.get()
+    const job = jobs.find(job => Number(job.id) === Number(jobId))
     if (!job) {
       return res.send('Job not found!')
     }
@@ -61,7 +72,7 @@ module.exports = {
       'total-hours': newData['total-hours'],
       'daily-hours': newData['daily-hours']
     }
-    Job.data = Job.data.map(job => {
+    jobs = jobs.map( job => {
       if (Number(job.id) === Number(jobId)) {
         job = updatedJob
       }
@@ -69,9 +80,11 @@ module.exports = {
     })
     return res.redirect('/job/' + jobId)
   },
+
   delete(req, res) {
     const jobId = req.params.id
-    Job.data = Job.data.filter(job => Number(job.id) !== Number(jobId))
+    const jobs = Job.get()
+    jobs = jobs.filter(job => Number(job.id) !== Number(jobId))
     return res.redirect('/')
   }
 }

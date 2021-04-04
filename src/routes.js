@@ -9,7 +9,7 @@ routes.get('/', JobController.index)
 routes.get('/job', JobController.create)
 
 // page job - post method 
-routes.post('/job', JobController.post)
+routes.post('/job', JobController.save)
 
 //  page jop-edit
 routes.get('/job/:id', JobController.show)

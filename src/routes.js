@@ -1,8 +1,5 @@
-const { req,res  } = require('express')
 const express = require('express')
-
 const routes = express.Router()
-const views = __dirname + '/views/'
 
 const Profile = {
   data: {
@@ -16,7 +13,7 @@ const Profile = {
   },
   controllers: {
     index(req, res) {
-      return res.render(views + 'profile', { profile: Profile.data })
+      return res.render('profile', { profile: Profile.data })
     },
     update(req, res) {
       const data = req.body
@@ -68,10 +65,10 @@ const Job = {
           budget: Job.services.calculateBudget(job, Profile.data['hour-value'])
         }
       })
-      return res.render(views + 'index', { jobs:updatedJobs })
+      return res.render('index', { jobs:updatedJobs })
     },
     create(req, res) {
-      return res.render(views + 'job')
+      return res.render('job')
     },
     post(req, res){
       const lastId = Job.data[Job.data.length -1]?.id  || 0
@@ -91,7 +88,7 @@ const Job = {
         return res.send('Job not found!')
       }
       job.budget = Job.services.calculateBudget(job, Profile.data['hour-value'])
-      return res.render(views + 'job-edit', { job })
+      return res.render('job-edit', { job })
     },
     update(req, res) {
       const newData = req.body

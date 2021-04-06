@@ -4,10 +4,12 @@ const Profile = require('../model/Profile')
 
 
 module.exports = {
+  // this method opens the form to create a new job
   create(req, res) {
     return res.render('job')
   },
-
+  // this method gets the job information on form
+  // and adds the job on array
   save(req, res) {
     const jobs = Job.get()
 
@@ -21,7 +23,7 @@ module.exports = {
     })
     return res.redirect('/')
   },
-
+  
   show(req, res) {
     const jobId = req.params.id
     const jobs = Job.get()

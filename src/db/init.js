@@ -33,7 +33,7 @@ const intiDb = {
       hour_value
     ) VALUES (
       "William Almeida",
-      "https://github.com/william-almedia.png",
+      "https://github.com/william-almeida.png",
       400,
       5,
       5,

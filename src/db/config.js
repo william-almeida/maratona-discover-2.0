@@ -4,7 +4,7 @@ const { open } = require('sqlite')
 
 module.exports = () => {
   open({
-    filename: './databasa.sqlite',
+    filename: './database.sqlite',
     driver: sqlite3.Database
   })
 }

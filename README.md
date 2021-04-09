@@ -31,7 +31,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [x] NodeJS
 - [x] EJS
 - [x] Express
-- [ ] SQLite
+- [x] SQLite
 
 ## 💻 Projeto
 

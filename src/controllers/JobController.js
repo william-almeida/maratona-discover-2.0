@@ -11,11 +11,7 @@ module.exports = {
   // this method gets the job information on form
   // and adds the job on array
   async save(req, res) {
-    const jobs = await Job.get()
-
-    const lastId = jobs[jobs.length - 1]?.id || 0
-    jobs.push({
-      id: lastId + 1,
+    await Job.create({
       name: req.body.name,
       "daily-hours": req.body["daily-hours"],
       "total-hours": req.body["total-hours"],

@@ -19,7 +19,7 @@ const intiDb = {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT,
       daily_hours INT,
-      tota_hours INT,
+      total_hours INT,
       created_at DATETIME
     )`)
 
@@ -44,7 +44,7 @@ const intiDb = {
     await db.run(`INSERT INTO jobs (
       name,
       daily_hours,
-      tota_hours,
+      total_hours,
       created_at
     ) VALUES (
       "Maratona Discover",
@@ -56,7 +56,7 @@ const intiDb = {
     await db.run(`INSERT INTO jobs (
       name,
       daily_hours,
-      tota_hours,
+      total_hours,
       created_at
     ) VALUES (
       "Github Profile",

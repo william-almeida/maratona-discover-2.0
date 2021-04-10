@@ -10,8 +10,8 @@ module.exports = {
   },
   // this method gets the job information on form
   // and adds the job on array
-  save(req, res) {
-    const jobs = Job.get()
+  async save(req, res) {
+    const jobs = await Job.get()
 
     const lastId = jobs[jobs.length - 1]?.id || 0
     jobs.push({
@@ -24,10 +24,10 @@ module.exports = {
     return res.redirect('/')
   },
   
-  show(req, res) {
+  async show(req, res) {
     const jobId = req.params.id
-    const jobs = Job.get()
-    const profile = Profile.get()
+    const jobs = await Job.get()
+    const profile = await Profile.get()
 
     // search job by JobID (url params)
     const job = jobs.find(job => Number(job.id) === Number(jobId))
@@ -38,11 +38,11 @@ module.exports = {
     return res.render('job-edit', { job })
   },
 
-  update(req, res) {
+  async update(req, res) {
     // data send by form 
     const newData = req.body
     const jobId = req.params.id
-    const jobs = Job.get()
+    const jobs = await Job.get()
     const job = jobs.find(job => Number(job.id) === Number(jobId))
     if (!job) {
       return res.send('Job not found!')

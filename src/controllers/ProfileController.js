@@ -12,7 +12,9 @@ module.exports = {
     const weekTotalHours = data['hours-per-day'] * data['days-per-week']
     const monthlyTotalHours = weekTotalHours * weeksPerMonth
     const hourValue = data['monthly-budget'] / monthlyTotalHours
+    
     profile = await Profile.get()
+    
     Profile.update({
       ...profile,
       ...req.body,

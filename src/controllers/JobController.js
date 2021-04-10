@@ -38,26 +38,14 @@ module.exports = {
     // data send by form 
     const newData = req.body
     const jobId = req.params.id
-    const jobs = await Job.get()
-    const job = jobs.find(job => Number(job.id) === Number(jobId))
-    if (!job) {
-      return res.send('Job not found!')
-    }
-
+    
     const updatedJob = {
-      ...job,
       name: newData.name,
       'total-hours': newData['total-hours'],
       'daily-hours': newData['daily-hours']
     }
-    const newJobs = jobs.map( job => {
-      if (Number(job.id) === Number(jobId)) {
-        job = updatedJob
-      }
-      return job
-    })
-
-    await Job.update(newJobs)
+    
+    await Job.update(updatedJob, jobId)
 
     return res.redirect('/job/' + jobId)
   },
